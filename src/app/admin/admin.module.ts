@@ -9,12 +9,14 @@ import {OrderPageComponent} from './order-page/order-page.component';
 import {EditPageComponent} from './edit-page/edit-page.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {isAdmin, isAuthenticated} from '../shared/auth.guard';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    QuillModule.forRoot(),
     RouterModule.forChild([
       {
         path: '', component: AdminLayoutComponent, children: [

@@ -1,12 +1,56 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {NgIf} from '@angular/common';
+import {QuillEditorComponent} from 'ngx-quill';
 
 @Component({
   selector: 'app-add-page',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf,
+    ReactiveFormsModule,
+    QuillEditorComponent
+  ],
   templateUrl: './add-page.component.html',
   styleUrl: './add-page.component.css'
 })
-export class AddPageComponent {
+export class AddPageComponent implements OnInit {
+
+  form!: FormGroup;
+
+  constructor() {
+  }
+
+  ngOnInit() {
+
+    this.form = new FormGroup({
+      type: new FormControl(null, Validators.required),
+      title: new FormControl(null, Validators.required),
+      photo: new FormControl(null, Validators.required),
+      info: new FormControl(null, Validators.required),
+      price: new FormControl(null, Validators.required),
+    })
+
+  }
+
+  submitted: boolean = false;
+
+  submit() {
+
+    if (this.form.invalid) {
+      return;
+    };
+
+    const product = {
+      type: this.form.value.type,
+      title: this.form.value.title,
+      photo: this.form.value.photo,
+      info: this.form.value.info,
+      price: this.form.value.price
+    };
+
+    console.log(this.form);
+
+  }
 
 }
