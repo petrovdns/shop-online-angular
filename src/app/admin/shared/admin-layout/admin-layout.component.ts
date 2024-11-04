@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {AuthService} from '../../../shared/auth.service';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-admin-layout',
@@ -8,7 +9,8 @@ import {AuthService} from '../../../shared/auth.service';
   imports: [
     RouterOutlet,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
+    NgIf
   ],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css'
@@ -16,11 +18,13 @@ import {AuthService} from '../../../shared/auth.service';
 export class AdminLayoutComponent {
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
+    private router: Router,
     ) {}
 
-  logout() {
+  logout(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['/admin', 'login']);
     this.auth.logout();
   }
-
 }
