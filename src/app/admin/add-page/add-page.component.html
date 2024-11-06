@@ -20,27 +20,33 @@
 
     <div class="form-control">
       <label for="title">Name:</label>
-      <input id="title" type="title" formControlName="title">
+      <input id="title" formControlName="title">
       <div *ngIf="form.get('title')?.touched && form.get('title')?.invalid" class="validation">
-        <small *ngIf="form.get('type')?.errors?.['required']">Enter product name</small>
+        <small *ngIf="form.get('title')?.errors?.['required']">Enter product name</small>
       </div>
     </div>
 
     <div class="form-control">
-      <label for="type">Photo:</label>
-      <quill-editor formControlName="photo"></quill-editor>
+      <label for="photo">Photo:</label>
+      <quill-editor id="photo" formControlName="photo"></quill-editor>
+      <div *ngIf="form.get('photo')?.touched && form.get('photo')?.invalid" class="validation">
+        <small *ngIf="form.get('photo')?.errors?.['required']">Insert photo</small>
+      </div>
     </div>
 
     <div class="form-control">
-      <label for="type">Information:</label>
-      <quill-editor formControlName="info"></quill-editor>
+      <label for="info">Information:</label>
+      <quill-editor id="info" formControlName="info"></quill-editor>
+      <div *ngIf="form.get('info')?.touched && form.get('info')?.invalid" class="validation">
+        <small *ngIf="form.get('info')?.errors?.['required']">Write info for this product</small>
+      </div>
     </div>
 
     <div class="form-control">
       <label for="price">Price:</label>
-      <input id="price" type="price" formControlName="price">
+      <input id="price" formControlName="price">
       <div *ngIf="form.get('price')?.touched && form.get('price')?.invalid" class="validation">
-        <small *ngIf="form.get('type')?.errors?.['required']">Enter product price</small>
+        <small *ngIf="form.get('price')?.errors?.['required']">Enter product price</small>
       </div>
     </div>
 
