@@ -24,5 +24,17 @@ export class ProductService {
       } ))
   }
 
+  getAll() {
+    return this.http.get<Record<string, any>>(`${environment.fbDbUrl}/products.json`)
+      .pipe( map( res => {
+        return Object.keys(res)
+          .map( key => ({
+            ...res[key],
+            id: key,
+            date: new Date(res[key].date)
+          }))
+      }) )
+  }
+
 
 }

@@ -1,0 +1,16 @@
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 712px) {
+  .dashboard {
+    display: block;
+    place-items: center;
+  }
+}
+
+.box {
+  width: 33.333%;
+  margin-top: 2rem;
+}

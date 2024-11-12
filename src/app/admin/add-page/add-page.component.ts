@@ -3,6 +3,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {NgIf} from '@angular/common';
 import {QuillEditorComponent} from 'ngx-quill';
 import {ProductService} from '../../shared/product.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-page',
@@ -19,7 +20,7 @@ export class AddPageComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private router: Router) {
   }
 
   ngOnInit() {
@@ -42,6 +43,8 @@ export class AddPageComponent implements OnInit {
       return;
     }
 
+    this.submitted = true;
+
     const product = {
       type: this.form.value.type,
       title: this.form.value.title,
@@ -52,7 +55,11 @@ export class AddPageComponent implements OnInit {
     };
 
     console.log(this.form);
-    this.productService.create(product).subscribe(res => console.log(res));
+    this.productService.create(product).subscribe(res => {
+      this.form.reset();
+      this.submitted = false;
+      this.router.navigate(['/']);
+    });
 
   }
 
