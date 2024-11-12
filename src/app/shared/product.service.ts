@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs';
@@ -8,6 +8,7 @@ import {fbDbProduct} from '../../models/res.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProductService {
 
   constructor(private http: HttpClient) { }
@@ -21,7 +22,6 @@ export class ProductService {
           date: new Date(product.date),
         }
       } ))
-
   }
 
 
