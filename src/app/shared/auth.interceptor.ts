@@ -19,17 +19,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
     if (path.includes("products.json")) {
 
-      console.log('Lucreaza');
-
       if (this.authService.isAuthenticated() && this.authService.token) {
         req = req.clone({
           setParams: {
             auth: this.authService.token
           }
         })
-        console.log('Token adaugat:', this.authService.token);
-      } else {
-        console.log('No token added');
       }
 
       return next.handle(req)

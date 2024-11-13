@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs';
-import {fbDbProduct} from '../../models/res.model';
+import {fbDbProduct, Product} from '../../models/res.model';
 
 
 @Injectable({
@@ -36,5 +36,15 @@ export class ProductService {
       }) )
   }
 
+  getById(id: string) {
+    return this.http.get(`${environment.fbDbUrl}/products/${id}.json`)
+      .pipe( map( (res: Product) => {
+        return {
+            ...res,
+            id,
+            date: res.date ? new Date(res.date) : null
+          }
+      }))
+  }
 
 }
