@@ -10,14 +10,13 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     const path = new URL(req.url).pathname;
 
-    if (path.includes("products.json")) {
+    if (path.includes("products")) {
 
       if (this.authService.isAuthenticated() && this.authService.token) {
         req = req.clone({
