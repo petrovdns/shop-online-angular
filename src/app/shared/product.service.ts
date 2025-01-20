@@ -1,8 +1,8 @@
-import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs';
 import {fbDbProduct, Product} from '../../models/res.model';
+import {Injectable} from '@angular/core';
 
 
 @Injectable({
@@ -11,7 +11,7 @@ import {fbDbProduct, Product} from '../../models/res.model';
 
 export class ProductService {
 
-  productUpdated = new EventEmitter<void>();
+  type:string = 'Phone';
 
   constructor(private http: HttpClient) { }
 
@@ -55,5 +55,9 @@ export class ProductService {
 
   update(product: Product) {
     return this.http.patch(`${environment.fbDbUrl}/products/${product.id}.json`, product)
+  }
+
+  setType(type: string) {
+    this.type = type;
   }
 }
