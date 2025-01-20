@@ -4,7 +4,6 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {QuillEditorComponent} from 'ngx-quill';
 import {ProductService} from '../../shared/product.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
 import {Product} from '../../../models/res.model';
 
 @Component({

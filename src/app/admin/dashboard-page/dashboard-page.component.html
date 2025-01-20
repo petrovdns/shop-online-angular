@@ -1,24 +1,28 @@
 <div *ngIf="products.length; else loading">
   <h2 class="text-center">Dashboard of product</h2>
 
-  <table style="width: auto; margin: 0 auto">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Date of creation</th>
-        <th>Open</th>
-        <th>Delete</th>
-      </tr>
+  <div style="display: flex; justify-content: center; margin: 0 auto; margin-bottom: 10px; margin-inline: 10px;">
+    <input style="width: 660px;" type="text" placeholder="Search a product" [(ngModel)]="productName">
+  </div>
+
+  <table style="width: auto; margin: 0 auto;">
+    <thead *ngIf="(products | search: productName).length > 0; else noProducts">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Date of creation</th>
+      <th>Open</th>
+      <th>Delete</th>
+    </tr>
     </thead>
 
     <tbody>
-    <tr *ngFor="let product of products; let idx = index">
+    <tr *ngFor="let product of products | search : productName; let idx = index">
       <td>{{ idx + 1 }}</td>
       <td>{{ product.title }}</td>
       <td>{{ product.price }}</td>
-      <td style="overflow: hidden; text-overflow: ellipsis;">{{ product.date }}</td>
+      <td style="overflow: hidden; text-overflow: ellipsis;">{{ product.date | date : 'medium' }}</td>
       <td>
         <button class="btn btn-dark" [routerLink]="['/admin', 'product', product.id, 'edit']">Open</button>
       </td>
@@ -33,4 +37,8 @@
 
 <ng-template #loading>
   <p class="text-center">Loading...</p>
+</ng-template>
+
+<ng-template #noProducts>
+  <p class="text-center">No items...</p>
 </ng-template>
