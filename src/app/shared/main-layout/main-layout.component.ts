@@ -36,7 +36,7 @@ export class MainLayoutComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.type = params['type'];
     });
-    if(this.type === undefined){
+    if(!this.type){
       this.type = 'Phone';
       this.router.navigate([],  {
         queryParams: {
@@ -44,7 +44,6 @@ export class MainLayoutComponent implements OnInit {
         }
       });
     }
-    console.log(this.type);
     this.productService.setType(this.type);
   }
 }

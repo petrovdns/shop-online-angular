@@ -12,6 +12,7 @@ import {Injectable} from '@angular/core';
 export class ProductService {
 
   type:string = 'Phone';
+  cartProducts: Product[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +24,7 @@ export class ProductService {
           id: res.name,
           date: new Date(product.date),
         }
-      } ))
+      } ));
   }
 
   getAll() {
@@ -60,4 +61,9 @@ export class ProductService {
   setType(type: string) {
     this.type = type;
   }
+
+  addProduct(product: Product) {
+    this.cartProducts.push(product);
+  }
+
 }

@@ -49,6 +49,4 @@ export class DashboardPageComponent implements OnInit {
       this.products = this.products.filter(product => product.id !== id);
     })
   }
-
-  protected readonly length = length;
 }
